@@ -17,7 +17,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ### Authors
 
-* **Dmitry Chertok** - *Initial work* - (https://github.com/chertodmtry)
+* **Dmitry Chertok** - *Initial work* - (https://github.com/chertokdmitry)
 
 ### License
 
