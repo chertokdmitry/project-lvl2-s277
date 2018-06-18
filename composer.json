@@ -1,0 +1,27 @@
+{
+    "name": "chertokdmitry/braingames",
+    "description": "hexlet project 2",
+    "bin": [
+        "bin/run"
+	],
+    "authors": [
+        {
+            "name": "Dmitry Chertok",
+            "email": "chertokdmitry@yandex.ru"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "src/Gendiff.php"
+        ]
+    },
+    "require": {
+        "docopt/docopt": "^1.0"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.0.0"
+    },
+    "scripts": {
+      "phpcs": "phpcs"
+    }
+}
