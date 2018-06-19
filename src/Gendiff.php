@@ -18,9 +18,9 @@ Options:
   --format <fmt>                Report format [default: pretty]
 DOCOPT;
     $result = \Docopt::handle($doc, array('version'=>'1.0.0'));
-    $diff = new \Differ\DiffJson;
+
     if ($result["<firstFile>"] && $result["<secondFile>"]) {
-            $diff->genDiff($result["<firstFile>"], $result["<secondFile>"]);
+            \Differ\genDiff($result["<firstFile>"], $result["<secondFile>"]);
     } else {
         foreach ($result as $k => $v) {
             echo $k.': '.json_encode($v).PHP_EOL;
