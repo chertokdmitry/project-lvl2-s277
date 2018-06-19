@@ -20,7 +20,8 @@ DOCOPT;
     $result = \Docopt::handle($doc, array('version'=>'1.0.0'));
 
     if ($result["<firstFile>"] && $result["<secondFile>"]) {
-            \Differ\genDiff($result["<firstFile>"], $result["<secondFile>"]);
+        $format = $result["--format"] ? $result["--format"] : "pretty";
+            \Differ\genDiff($result["<firstFile>"], $result["<secondFile>"], $format);
     } else {
         foreach ($result as $k => $v) {
             echo $k.': '.json_encode($v).PHP_EOL;

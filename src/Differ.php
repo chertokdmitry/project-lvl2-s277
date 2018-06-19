@@ -2,26 +2,45 @@
 namespace Differ;
 
 use Funct;
+use Symfony\Component\Yaml\Yaml;
 
-function genDiff($jsonFile1, $jsonFile2)
+function genDiff($file1, $file2, $format)
 {
-    if (!class_exists("Funct", false)) {
-        require(__DIR__ . '/../vendor/funct/funct/src/General.php');
+    // if (!class_exists("Funct", false)) {
+    //     require(__DIR__ . '/../vendor/funct/funct/src/General.php');
+    // }
+
+    if ($format == "json" || $format == "pretty") {
+        $func = function ($fileData) {
+            return json_decode($fileData);
+        };
+        fileDiff($file1, $file2, $func);
     }
 
-    function jsonToArray($file)
+    if ($format == "yaml") {
+        $func = function ($fileData) {
+            return Yaml::parse($fileData);
+        };
+        fileDiff($file1, $file2, $func);
+    }
+}
+
+function fileDiff($file1, $file2, $func)
+{
+    function objToArray($file, $func)
     {
         $result = [];
-        $jsonData = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . $file);
-        $data = json_decode($jsonData);
+        $fileData = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . $file);
+        $data = $func($fileData);
+
         foreach ($data as $key => $value) {
             $result[$key] = $value;
         }
             return $result;
     }
-        
-    $before = jsonToArray($jsonFile1);
-    $after = jsonToArray($jsonFile2);
+
+    $before = objToArray($file1, $func);
+    $after = objToArray($file2, $func);
 
     echo "{"  . "\n";
     foreach ($after as $key => $value) {
