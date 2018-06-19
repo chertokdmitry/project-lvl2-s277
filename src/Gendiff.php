@@ -2,10 +2,11 @@
 namespace Gendiff;
 
 require(__DIR__ . '/../vendor/docopt/docopt/src/docopt.php');
+include(__DIR__ . '/Differ.php');
 
 function docs()
 {
-$doc = <<<'DOCOPT'
+    $doc = <<<'DOCOPT'
 Generate diff
 
 Usage:
@@ -17,8 +18,12 @@ Options:
   --format <fmt>                Report format [default: pretty]
 DOCOPT;
     $result = \Docopt::handle($doc, array('version'=>'1.0.0'));
-
-    foreach ($result as $k => $v) {
-        echo $k.': '.json_encode($v).PHP_EOL;
+    $diff = new \Differ\DiffJson;
+    if ($result["<firstFile>"] && $result["<secondFile>"]) {
+            $diff->genDiff($result["<firstFile>"], $result["<secondFile>"]);
+    } else {
+        foreach ($result as $k => $v) {
+            echo $k.': '.json_encode($v).PHP_EOL;
+        }
     }
 }
