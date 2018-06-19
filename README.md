@@ -4,11 +4,7 @@
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/29466b0dc88b46eb7a39/test_coverage)](https://codeclimate.com/github/chertokdmitry/project-lvl2-s277/test_coverage)
 
-[![GitHub release](https://img.shields.io/github/release/qubyte/rubidium.svg)](https://github.com/chertokdmitry/project-lvl2-s277)
-
-[![GitHub issue author](https://img.shields.io/github/issues/detail/u/badges/shields/979.svg)](https://github.com/chertokdmitry/project-lvl2-s277)
-
-[![PHP from Packagist](https://img.shields.io/packagist/php-v/symfony/symfony.svg)](https://github.com/chertokdmitry/project-lvl2-s277)
+[![GitHub version](https://badge.fury.io/gh/chertokdmitry%2Fproject-lvl2-s277.svg)](http://badge.fury.io/gh/chertokdmitry%2Fproject-lvl2-s277)
 
 
 
