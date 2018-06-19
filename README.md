@@ -4,6 +4,11 @@
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/29466b0dc88b46eb7a39/test_coverage)](https://codeclimate.com/github/chertokdmitry/project-lvl2-s277/test_coverage)
 
+[![GitHub version](https://badge.fury.io/gh/chertokdmitry%2Fproject-lvl2-s277.svg)](http://badge.fury.io/gh/chertokdmitry%2Fproject-lvl2-s277)
+
+
+
+
 ### Prerequisites
 
 * PHP 7.0 and higher
