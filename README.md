@@ -4,6 +4,10 @@
 
 [![Test Coverage](https://api.codeclimate.com/v1/badges/29466b0dc88b46eb7a39/test_coverage)](https://codeclimate.com/github/chertokdmitry/project-lvl2-s277/test_coverage)
 
+
+![GitHub package version](https://img.shields.io/github/package-json/v/badges/shields.svg)
+
+
 ### Prerequisites
 
 * PHP 7.0 and higher
