@@ -7,21 +7,20 @@ class DiffJson
 {
     public function genDiff($jsonFile1, $jsonFile2)
     {
-        $beforeJsonData = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . $jsonFile1);
-        $beforeData = json_decode($beforeJsonData);
-        $before = [];
-
-        foreach ($beforeData as $key1 => $value1) {
-            $before[$key1] = $value1;
+        function jsonToArray($file)
+        {
+            $result = [];
+            $jsonData = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . $file);
+            $data = json_decode($jsonData);
+            foreach ($data as $key => $value) {
+                $result[$key] = $value;
+            }
+            return $result;
         }
+        
+        $before = jsonToArray($jsonFile1);
+        $after = jsonToArray($jsonFile2);
 
-        $afterJsonData = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . $jsonFile2);
-        $afterData = json_decode($afterJsonData);
-        $after = [];
-
-        foreach ($afterData as $key => $value) {
-            $after[$key] = $value;
-        }
         echo "{"  . "\n";
         foreach ($after as $key => $value) {
             if (!Funct\arrayKeyNotExists($key, $before)) {
@@ -41,6 +40,6 @@ class DiffJson
                 echo "- " . $key . " : " . $before[$key] . "\n";
             }
         }
-        echo "}"  . "\n";
+                echo "}"  . "\n";
     }
 }
