@@ -1,6 +1,7 @@
 <?php
-
 namespace Gendiff;
+
+use \Differ\genDiff;
 
 function docs()
 {

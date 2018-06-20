@@ -25,20 +25,21 @@ function genDiff($file1, $file2, $format)
     }
 }
 
-function fileDiff($file1, $file2, $func)
+function objToArray($file, $func)
 {
-    function objToArray($file, $func)
-    {
-        $result = [];
-        $fileData = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . $file);
-        $data = $func($fileData);
+    $result = [];
+    $fileData = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . $file);
+    $data = $func($fileData);
 
-        foreach ($data as $key => $value) {
+    foreach ($data as $key => $value) {
             $result[$key] = $value;
-        }
-            return $result;
     }
 
+    return $result;
+}
+
+function fileDiff($file1, $file2, $func)
+{
     $before = objToArray($file1, $func);
     $after = objToArray($file2, $func);
 
