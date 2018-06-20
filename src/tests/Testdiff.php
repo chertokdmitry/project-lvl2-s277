@@ -1,5 +1,5 @@
 <?php
-namespace Gendiff\Testdiff;
+namespace Gendiff\Tests;
 
 use PHPUnit\Framework\TestCase;
 
@@ -10,6 +10,3 @@ class TestSolution extends TestCase
             $this->assertEquals($data1, $data2);
     }
 }
-
-$test = new TestSolution();
-$result = $test->testJson();
