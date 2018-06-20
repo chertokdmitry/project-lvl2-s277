@@ -13,7 +13,7 @@
     "autoload": {
         "files": [
             "src/Cli.php",
-            "src/Parcer.php",
+            "src/Parser.php",
             "src/Differ.php"
         ]
     },

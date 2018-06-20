@@ -2,7 +2,7 @@
 namespace Cli;
 
 use \Differ\diff;
-use \Parcer\parcer;
+use \Parser\parser;
 
 function docs()
 {
@@ -21,7 +21,7 @@ DOCOPT;
     $result = \Docopt::handle($doc);
     $format = $result["--format"] ? $result["--format"] : "pretty";
 
-    $files =  \Parcer\parcer($result["<firstFile>"], $result["<secondFile>"], $format);
+    $files =  \Parser\parser($result["<firstFile>"], $result["<secondFile>"], $format);
     $result = \Differ\diff($files);
 
     foreach ($result as $key => $value) {
