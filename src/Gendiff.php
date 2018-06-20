@@ -17,14 +17,9 @@ Options:
   -h --help                     Show this screen
   --format <fmt>                Report format [default: pretty]
 DOCOPT;
-    $result = \Docopt::handle($doc, array('version'=>'1.0.0'));
 
-    if ($result["<firstFile>"] && $result["<secondFile>"]) {
-        $format = $result["--format"] ? $result["--format"] : "pretty";
-            \Differ\genDiff($result["<firstFile>"], $result["<secondFile>"], $format);
-    } else {
-        foreach ($result as $k => $v) {
-            echo $k.': '.json_encode($v).PHP_EOL;
-        }
-    }
+    $result = \Docopt::handle($doc);
+    $format = $result["--format"] ? $result["--format"] : "pretty";
+
+    \Differ\genDiff($result["<firstFile>"], $result["<secondFile>"], $format);
 }
