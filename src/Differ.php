@@ -2,65 +2,39 @@
 namespace Differ;
 
 use Funct;
-use Symfony\Component\Yaml\Yaml;
 
-function genDiff($file1, $file2, $format)
+function diff($files)
 {
-    // if (!class_exists("Funct", false)) {
-    //     require(__DIR__ . '/../vendor/funct/funct/src/General.php');
-    // }
 
-    if ($format == "json" || $format == "pretty") {
-        $func = function ($fileData) {
-            return json_decode($fileData);
-        };
-        fileDiff($file1, $file2, $func);
-    }
+    $before = $files[0];
+    $after = $files[1];
 
-    if ($format == "yaml") {
-        $func = function ($fileData) {
-            return Yaml::parse($fileData);
-        };
-        fileDiff($file1, $file2, $func);
-    }
-}
+    $union = Funct\Collection\union(array_keys($before), array_keys($after));
 
-function objToArray($file, $func)
-{
-    $result = [];
-    $fileData = file_get_contents(__DIR__ . DIRECTORY_SEPARATOR . $file);
-    $data = $func($fileData);
+    $func = function ($value) use ($after, $before) {
+        $result = [];
 
-    foreach ($data as $key => $value) {
-            $result[$key] = $value;
-    }
-
-    return $result;
-}
-
-function fileDiff($file1, $file2, $func)
-{
-    $before = objToArray($file1, $func);
-    $after = objToArray($file2, $func);
-
-    echo "{"  . "\n";
-    foreach ($after as $key => $value) {
-        if (!Funct\arrayKeyNotExists($key, $before)) {
-            if ($before[$key] == $after[$key]) {
-                    echo "  " . $key . " : " . $before[$key] . "\n";
+        if (!Funct\arrayKeyNotExists($value, $before) && !Funct\arrayKeyNotExists($value, $after)) {
+            if ($after[$value] == $before[$value]) {
+                $result[] = "  " . $value . ": " . $after[$value];
             } else {
-                 echo "+ " . $key . " : " . $before[$key] . "\n";
-
-                echo "- " . $key . " : " . $after[$key] . "\n";
+                $result[] = "+ " . $value . ": " . $after[$value];
+                $result[] = "- " . $value . ": " . $before[$value];
             }
-        } else {
-            echo "+ " . $key . " : " . $value . "\n";
         }
-    }
-    foreach ($before as $key => $value) {
-        if (Funct\arrayKeyNotExists($key, $after)) {
-            echo "- " . $key . " : " . $before[$key] . "\n";
+
+        if (Funct\arrayKeyNotExists($value, $before)) {
+            $result[] = "+ " . $value . ": " . $after[$value];
         }
-    }
-            echo "}"  . "\n";
+
+        if (Funct\arrayKeyNotExists($value, $after)) {
+            $result[] = "- " . $value . ": " . $before[$value];
+        }
+
+        return $result;
+    };
+
+    $diffAfterBefore = array_map($func, $union);
+
+    return Funct\Collection\flattenAll($diffAfterBefore);
 }

@@ -12,7 +12,8 @@
     ],
     "autoload": {
         "files": [
-            "src/Gendiff.php",
+            "src/Cli.php",
+            "src/Parcer.php",
             "src/Differ.php"
         ]
     },

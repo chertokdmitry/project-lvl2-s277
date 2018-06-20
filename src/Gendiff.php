@@ -1,24 +1,15 @@
 <?php
 namespace Gendiff;
 
-use \Differ\genDiff;
+        include(__DIR__ . '/Parcer.php');
+        include(__DIR__ . '/Differ.php');
+        include(__DIR__ . '/General.php');
+        include(__DIR__ . '/Collection.php');
 
-function docs()
+function genDiff($pathToFile1, $pathToFile2, $format)
 {
-    $doc = <<<'DOCOPT'
-Generate diff
 
-Usage:
-  gendiff (-h|--help)
-  gendiff [--format <fmt>] <firstFile> <secondFile>
 
-Options:
-  -h --help                     Show this screen
-  --format <fmt>                Report format [default: pretty]
-DOCOPT;
-
-    $result = \Docopt::handle($doc);
-    $format = $result["--format"] ? $result["--format"] : "pretty";
-
-    \Differ\genDiff($result["<firstFile>"], $result["<secondFile>"], $format);
+    $files =  \Parcer\parcer($pathToFile1, $pathToFile2, $format);
+    return \Differ\diff($files);
 }
