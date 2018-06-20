@@ -1,7 +1,6 @@
 <?php
 namespace Gendiff;
 
-require(__DIR__ . '/../vendor/docopt/docopt/src/docopt.php');
 include(__DIR__ . '/Differ.php');
 
 function docs()
