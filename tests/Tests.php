@@ -1,7 +1,7 @@
 <?php
 namespace Tests;
 
-include(__DIR__ . '/../src/Gendiff.php');
+include(__DIR__ . '/../src/Lib.php');
 
 use PHPUnit\Framework\TestCase;
 
@@ -13,7 +13,7 @@ class TestsDiff extends TestCase
             $resultFalse = ['  host: hexlet.io'];
 
             $diff = \Gendiff\genDiff("before.json", "after.json", "json");
-            
+
             $this->assertEquals($diff, $resultTrue);
             $this->assertNotEquals($diff, $resultFalse);
     }
