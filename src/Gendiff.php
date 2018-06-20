@@ -1,7 +1,6 @@
 <?php
-namespace Gendiff;
 
-include(__DIR__ . '/Differ.php');
+namespace Gendiff;
 
 function docs()
 {
