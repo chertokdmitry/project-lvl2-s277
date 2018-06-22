@@ -29,6 +29,7 @@
     },
     "scripts": {
         "phpcs": "phpcs",
-        "test": "vendor/bin/phpunit"
+        "phpunit": "phpunit",
+        "test": "phpunit tests"
     }
 }
