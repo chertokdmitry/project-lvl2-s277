@@ -2,7 +2,7 @@
 namespace Tests;
 
 use Gendiff;
-use PHPUnit\Framework\TestCase;
+use \PHPUnit\Framework\TestCase;
 
 class TestsDiff extends TestCase
 {
