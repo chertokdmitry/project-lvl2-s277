@@ -5,5 +5,5 @@ php:
 install:
   - composer self-update
   - make install
-
-script: make lint test
+  
+script: vendor/bin/phpunit --debug
