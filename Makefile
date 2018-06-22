@@ -3,6 +3,6 @@ install:
 lint:
 	composer run-script phpcs -- --standard=PSR2 src bin
 test:
-	composer run-script test tests/
+	composer run-script phpunit tests
 update:
 	composer update
