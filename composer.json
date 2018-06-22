@@ -33,7 +33,8 @@
         "test":"vendor/bin/phpunit"
     },
     "autoload-dev": {
-    "psr-4": {
-        "Tests\\": "tests/"
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     }
 }
