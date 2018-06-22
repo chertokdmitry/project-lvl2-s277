@@ -3,8 +3,10 @@ namespace Parser;
 
 use Symfony\Component\Yaml\Yaml;
 
-function parser($file1, $file2, $format)
+function parser($file, $format)
 {
+    $result = [];
+    
     if ($format == "json" || $format == "pretty") {
         $func = function ($fileData) {
             return json_decode($fileData);
@@ -17,17 +19,7 @@ function parser($file1, $file2, $format)
         };
     }
 
-    $before = objToArray($file1, $func);
-    $after = objToArray($file2, $func);
-
-    return [$before, $after];
-}
-
-function objToArray($file, $func)
-{
-    $result = [];
-    $fileData = file_get_contents(__DIR__ .'/../data/' . $file);
-    $data = $func($fileData);
+    $data = $func($file);
 
     foreach ($data as $key => $value) {
             $result[$key] = $value;

@@ -1,8 +1,13 @@
 <?php
 namespace Gendiff;
 
-function genDiff($pathToFile1, $pathToFile2, $format)
+function genDiff($file1, $file2, $format)
 {
-    $files =  \Parser\parser($pathToFile1, $pathToFile2, $format);
-    return \Differ\diff($files);
+    $dataBefore = file_get_contents($file1);
+    $dataAfter = file_get_contents($file2);
+
+    $before =  \Parser\parser($dataBefore, $format);
+    $after =  \Parser\parser($dataAfter, $format);
+
+    return \Differ\diff([$before, $after]);
 }

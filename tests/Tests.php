@@ -1,23 +1,21 @@
 <?php
 namespace Tests;
 
-include(__DIR__ . '/../src/Lib.php');
-
+use Gendiff;
 use PHPUnit\Framework\TestCase;
 
 class TestsDiff extends TestCase
 {
-    public function testGenDiff()
+    public function testJson()
     {
-            $resultTrue = ['  host: hexlet.io', '+ timeout: 20', '- timeout: 50', '- proxy: 123.234.53.22', '+ verbose: 1'];
-            $resultFalse = ['  host: hexlet.io'];
+            $file1 = "fixtures/before.json";
+            $file2 = "fixtures/after.json";
+            $type = "json";
 
-            $diff = \Gendiff\genDiff("before.json", "after.json", "json");
+            $result = file_get_contents("fixtures/resultTrueJson.txt");
+            $resultInArray = unserialize($result);
 
-            $this->assertEquals($diff, $resultTrue);
-            $this->assertNotEquals($diff, $resultFalse);
+            $diff = \Gendiff\genDiff($file1, $file2, $type);
+            $this->assertEquals($diff, $resultInArray);
     }
 }
-
-$test = new TestsDiff;
-$result = $test->testGenDiff();

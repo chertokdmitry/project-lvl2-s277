@@ -1,8 +1,7 @@
 <?php
 namespace Cli;
 
-use \Differ\diff;
-use \Parser\parser;
+use \Gendiff\genDiff;
 
 function docs()
 {
@@ -21,11 +20,12 @@ DOCOPT;
     $result = \Docopt::handle($doc);
     $format = $result["--format"] ? $result["--format"] : "pretty";
 
-    $files =  \Parser\parser($result["<firstFile>"], $result["<secondFile>"], $format);
-    $result = \Differ\diff($files);
+    $result =  \Gendiff\genDiff($result["<firstFile>"], $result["<secondFile>"], $format);
 
-    foreach ($result as $key => $value) {
-        echo $value;
-        echo "\n";
-    }
+    print_r($result);
+
+    // foreach ($result as $key => $value) {
+    //     echo $value;
+    //     echo "\n";
+    // }
 }
