@@ -6,4 +6,6 @@ install:
   - composer self-update
   - make install
   
-script: vendor/bin/phpunit --debug
+script:
+  - make lint
+  - make test
