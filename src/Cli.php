@@ -23,9 +23,4 @@ DOCOPT;
     $result =  \Gendiff\genDiff($result["<firstFile>"], $result["<secondFile>"], $format);
 
     print_r($result);
-
-    // foreach ($result as $key => $value) {
-    //     echo $value;
-    //     echo "\n";
-    // }
 }

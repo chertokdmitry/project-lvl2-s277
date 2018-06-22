@@ -1,5 +1,5 @@
 <?php
-include(__DIR__ . '/Lib.php');
+use Gendiff;
 
 $diff = \Gendiff\genDiff("before.json", "after.json", "json");
 
