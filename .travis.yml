@@ -5,7 +5,4 @@ php:
 install:
   - composer self-update
   - make install
-  
-script:
-  - make lint
-  - make test
+script: make lint test
