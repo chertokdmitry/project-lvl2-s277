@@ -5,7 +5,6 @@ function switchStatus($data)
 {
     $result = '';
     if ($data['status'] == "added") {
-        
         $result .=  "  ". "+ " . $data['key'] . ": " . $data['afterVal'];
     }
 

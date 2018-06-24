@@ -22,7 +22,8 @@ function switchStatus($data, $parent)
     }
 
     if ($data['status'] == "changed") {
-        $result .= "\n Property '". $path  .  $data['key'] . "' was changed. From '" . $data['beforeVal'] . "' to '" . $data['afterVal'] . "'";
+        $result .= "\n Property '". $path  .  $data['key'] . "' was changed.";
+        $result .= " From '" . $data['beforeVal'] . "' to '" . $data['afterVal'] . "'";
     }
 
     return $result;
