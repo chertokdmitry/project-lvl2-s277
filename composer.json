@@ -18,7 +18,10 @@
             "src/Gendiffplain.php",
             "src/Differ.php",
             "src/Differast.php",
-            "src/View.php"
+            "src/Viewcli.php",
+            "src/Viewjson.php",
+            "src/Viewplain.php",
+            "src/Viewfile.php"
         ]
     },
     "require": {

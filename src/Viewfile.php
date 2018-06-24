@@ -1,5 +1,5 @@
 <?php
-namespace Diff\View;
+namespace Diff\Viewfile;
 
 function switchStatus($data)
 {
@@ -7,22 +7,18 @@ function switchStatus($data)
     if ($data['status'] == "added") {
         $result .=  "  ". "+ " . $data['key'] . ": " . $data['afterVal'];
     }
-
     if ($data['status'] == "deleted") {
         $result .=  "  ". "- " . $data['key']  . ": " . $data['beforeVal'];
     }
-
     if ($data['status'] == "changed") {
         $result .= "  " . "- " . $data['key'] . ": " . $data['beforeVal'] . "\n";
         $result .= "  " . "    " . "+ " . $data['key'] . ": " . $data['afterVal'];
     }
-
     if ($data['status'] == "same") {
         $result .=  "    " . $data['key'] . ": " . $data['beforeVal'];
     }
     return $result;
 }
-
 function viewDiff($data, $file)
 {
     $func = function ($carry, $item) use ($file) {
@@ -48,12 +44,13 @@ function viewDiff($data, $file)
     $result = array_reduce($data, $func);
 
     $resultData = fwrite($file, $result);
-}
+    $message = "Data saved to " . $file;
 
+    return $message;
+}
 function getChildren($data, $file)
 {
     $func = function ($carry, $item) {
-
         if (is_array($item)) {
             $ak = array_keys($item);
             if (($item[$ak[0]]['tree'] == 'parent')) {
