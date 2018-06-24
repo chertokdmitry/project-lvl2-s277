@@ -15,7 +15,9 @@
             "src/Cli.php",
             "src/Parser.php",
             "src/Gendiff.php",
-            "src/Differ.php"
+            "src/Differ.php",
+            "src/Differast.php",
+            "src/View.php"
         ]
     },
     "require": {
@@ -25,7 +27,7 @@
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.0.0",
-	"phpunit/phpunit": "^7.2"
+        "phpunit/phpunit": "^7.2"
     },
     "scripts": {
         "phpcs": "phpcs",

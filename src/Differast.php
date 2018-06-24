@@ -1,5 +1,5 @@
 <?php
-namespace Differ;
+namespace Differast;
 
 use Funct;
 
@@ -15,30 +15,29 @@ function newNodeAst($key, $status, $beforeVal, $afterVal, $tree, $children)
     ];
 }
 
-function setGetDepth($before, $after)
+function setGetDepth($before, $after, $action)
 {
     static $beforeDepth;
     static $afterDepth;
 
-    if ($before != 0) {
+    if ($action == 'set') {
         $beforeDepth = $before;
         $afterDepth = $after;
     }
-
     return [$beforeDepth, $afterDepth];
 }
 
 function diffAst($beforeData, $afterData)
 {
     $ast = [];
-    $depthOfData = setGetDepth($beforeData, $afterData);
+    $depthOfData = setGetDepth($beforeData, $afterData, 'set');
     $before = $depthOfData[0];
     $after = $depthOfData[1];
     $union = Funct\Collection\union(array_keys($before), array_keys($after));
 
     $func = function ($value) use (&$func, $before, $after, $ast) {
 
-        $depthOfData = setGetDepth(0, 0);
+        $depthOfData = setGetDepth(0, 0, 'get');
         $before = $depthOfData[0];
         $after = $depthOfData[1];
 
@@ -46,7 +45,7 @@ function diffAst($beforeData, $afterData)
             if (is_array($before[$value])) {
                 $ast[$value] = newNodeAst($value, 'same', null, null, 'parent', null);
 
-                setGetDepth($before[$value], $after[$value]);
+                setGetDepth($before[$value], $after[$value], 'set');
   
                 $union = Funct\Collection\union(array_keys($before[$value]), array_keys($after[$value]));
                 $ast[$value]['children'] = array_map($func, $union);
@@ -78,50 +77,10 @@ function diffAst($beforeData, $afterData)
             }
         }
 
-        setGetDepth($before, $after);
-
+        setGetDepth($before, $after, 'set');
         return $ast;
     };
 
     $diff = array_map($func, $union);
     return $diff;
-    //return Funct\Collection\flattenAll($diffAfterBefore);
 }
-
-// function diff($files)
-// {
-
-//     $before = $files[0];
-//     $after = $files[1];
-
-//     $union = Funct\Collection\union(array_keys($before), array_keys($after));
-
-//     $func = function ($value) use ($after, $before) {
-//         $result = [];
-//         $ast = [];
-
-//         if (!Funct\arrayKeyNotExists($value, $before) && !Funct\arrayKeyNotExists($value, $after)) {
-//             if ($after[$value] == $before[$value]) {
-//                 $result[] = "  " . $value . ": " . $after[$value];
-//                 $ast[] = newAst($value, 'same', $after[$value], $before[$value], false);
-//             } else {
-//                 $result[] = "+ " . $value . ": " . $after[$value];
-//                 $result[] = "- " . $value . ": " . $before[$value];
-//             }
-//         }
-
-//         if (Funct\arrayKeyNotExists($value, $before)) {
-//             $result[] = "+ " . $value . ": " . $after[$value];
-//         }
-
-//         if (Funct\arrayKeyNotExists($value, $after)) {
-//             $result[] = "- " . $value . ": " . $before[$value];
-//         }
-
-//         return $result;
-//     };
-
-//     $diffAfterBefore = array_map($func, $union);
-
-//     return Funct\Collection\flattenAll($diffAfterBefore);
-// }

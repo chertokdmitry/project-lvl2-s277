@@ -9,5 +9,9 @@ function genDiff($file1, $file2, $format)
     $before =  \Parser\parser($dataBefore, $format);
     $after =  \Parser\parser($dataAfter, $format);
 
-    return \Differ\diff([$before, $after]);
+    $ast = \Differast\diffAst($before, $after);
+    $file = fopen('result.txt', 'a');
+    $astOut = \View\viewDiff($ast, $file);
+
+    return $astOut;
 }

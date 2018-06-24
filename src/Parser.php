@@ -6,7 +6,7 @@ use Symfony\Component\Yaml\Yaml;
 function parser($file, $format)
 {
     $result = [];
-    
+
     if ($format == "json" || $format == "pretty") {
         $func = function ($fileData) {
             return json_decode($fileData);
@@ -20,10 +20,23 @@ function parser($file, $format)
     }
 
     $data = $func($file);
+    $newdata = objToArray($data);
 
-    foreach ($data as $key => $value) {
-            $result[$key] = $value;
+    return $newdata;
+}
+
+function objToArray($obj)
+{
+    if (is_object($obj)) {
+        $obj = (array) $obj;
     }
-
-    return $result;
+    if (is_array($obj)) {
+        $new = array();
+        foreach ($obj as $key => $val) {
+            $new[$key] = objToArray($val);
+        }
+    } else {
+        $new = $obj;
+    }
+    return $new;
 }
