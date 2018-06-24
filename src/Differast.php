@@ -1,5 +1,5 @@
 <?php
-namespace Differast;
+namespace Diff\Differast;
 
 use Funct;
 

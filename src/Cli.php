@@ -1,7 +1,7 @@
 <?php
-namespace Cli;
+namespace Diff\Cli;
 
-use \Gendiff\genDiff;
+use Diff\Gendiff;
 
 function docs()
 {
@@ -18,9 +18,7 @@ Options:
 DOCOPT;
 
     $result = \Docopt::handle($doc);
-    $format = $result["--format"] ? $result["--format"] : "pretty";
-
-    $result =  \Gendiff\genDiff($result["<firstFile>"], $result["<secondFile>"], $format);
+    $result =  Gendiff\genDiff($result["<firstFile>"], $result["<secondFile>"], $result["--format"]);
 
     print_r($result);
 }

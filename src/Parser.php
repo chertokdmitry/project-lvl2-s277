@@ -1,9 +1,9 @@
 <?php
-namespace Parser;
+namespace Diff\Parser;
 
 use Symfony\Component\Yaml\Yaml;
 
-function parser($file, $format)
+function getData($file, $format)
 {
     $result = [];
 

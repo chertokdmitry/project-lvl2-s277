@@ -15,6 +15,7 @@
             "src/Cli.php",
             "src/Parser.php",
             "src/Gendiff.php",
+            "src/Gendiffplain.php",
             "src/Differ.php",
             "src/Differast.php",
             "src/View.php"

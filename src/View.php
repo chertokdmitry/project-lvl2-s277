@@ -1,5 +1,5 @@
 <?php
-namespace View;
+namespace Diff\View;
 
 function switchStatus($data)
 {
