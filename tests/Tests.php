@@ -13,9 +13,11 @@ class Tests extends TestCase
             $type = "pretty";
 
             $resultFile = __DIR__ . "/fixtures/result.txt";
-            $result = file_get_contents($resultFile);
+            $file = fopen($resultFile, "r")
+            $result = file_get_contents($file);
 
             $diff = \Diff\Gendiff\genDiff($file1, $file2, $type);
             $this->assertEquals($diff, $result);
+            fclose($file);
     }
 }
