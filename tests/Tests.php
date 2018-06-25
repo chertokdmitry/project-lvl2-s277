@@ -57,4 +57,36 @@ class Tests extends TestCase
         $diff = \Diff\Gendiff\genDiff($file1, $file2, $type);
         $this->assertEquals($diff, $result);
     }
+
+    public function testJson()
+    {
+        $file1 = __DIR__ . "/fixtures/beforeast.json";
+        $file2 = __DIR__ . "/fixtures/afterast.json";
+        $type = "json";
+        $result = '{
+  "common": {"status": "same", "value":  {
+    "setting1": {"status": "same", "value": "Value 1"},
+    "setting2": {"status": "deleted", "value": "200"},
+    "setting3": {"status": "same", "value": "1"},
+    "setting6": {"status": "deleted", "value": {
+      "key": "value"
+      },
+    "setting4": {"status": "added", "value": "blah blah"},
+    "setting5": {"status": "added", "value": {
+      "key5": "value5"
+      },
+    }
+  "group1": {"status": "same", "value":  {
+    "baz": {"status": "changed", "oldvalue": "bas", "value": "bars"},
+    "foo": {"status": "same", "value": "bar"},
+    }
+  "group2": {"status": "deleted", "value":  {
+        "abc": "12345"
+    }
+  "group3": {"status": "added", "value":  {
+        "fee": "100500"';
+
+        $diff = \Diff\Gendiff\genDiff($file1, $file2, $type);
+        $this->assertEquals($diff, $result);
+    }
 }

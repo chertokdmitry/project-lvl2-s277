@@ -28,7 +28,7 @@ function dataOut($data, $action, $tree, $parent)
 
         if ($data['status'] == "added") {
             if ($data['afterVal']) {
-                $value = '"' . $data['afterVal'] . '",';
+                $value = '"' . $data['afterVal'] . '"},';
             }
             $result .=  $space . '"' . $data['key'] . '": {"status": "added", "value": ' . $value;
         }
