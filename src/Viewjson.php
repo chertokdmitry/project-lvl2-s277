@@ -5,6 +5,7 @@ function dataOut($data, $action, $tree)
 {
     static $counter;
     $counter++;
+    $value = "";
     $result = '';
     $space = "  ";
 
@@ -20,7 +21,7 @@ function dataOut($data, $action, $tree)
         $result .= "{\n";
     }
 
-    if ($tree == 'parent' && $counter != 1) {
+    if ($tree == 'parent' && $counter != 1 && $action != 'arrayOut') {
         $result .=  $space . $space . "}\n";
     }
     
@@ -29,21 +30,39 @@ function dataOut($data, $action, $tree)
         }
 
         if ($data['status'] == "added") {
-            $result .=  $space . "+ " . $data['key'] . ": " . $data['afterVal'];
+            if ($data['afterVal']) {
+                $value = '"' . $data['afterVal'] . '",';
+            }
+            $result .=  $space . '"' . $data['key'] . '": {"status": "added", "value": ' . $value;
         }
 
         if ($data['status'] == "deleted") {
-            $result .=  $space . "- " . $data['key']  . ": " . $data['beforeVal'];
+
+            if ($data['beforeVal']) {
+                $value = '"' . $data['beforeVal'] . '"},';
+            }
+            $result .=  $space . '"' . $data['key'] . '": {"status": "deleted", "value": ' . $value;
         }
 
         if ($data['status'] == "changed") {
-            $result .= $space  . "- " . $data['key'] . ": " . $data['beforeVal']. "\n";
-            $result .= $space  . $space  . "+ " . $data['key'] . ": " . $data['afterVal'];
+
+            if ($data['afterVal']) {
+                $value = '"' . $data['afterVal'] . '"},';
+            }
+
+            $result .=  $space . '"' . $data['key'] . '": {"status": "changed", "oldvalue": "' . $data['beforeVal'] . '", "value": ' . $value;
+
+            // $result .= $space  . "- " . $data['key'] . ": " . $data['beforeVal']. "\n";
+            // $result .= $space  . $space  . "+ " . $data['key'] . ": " . $data['afterVal'];
         }
 
         if ($data['status'] == "same") {
-            $result .=  $space . '  ' . $data['key'] . ": " . $data['beforeVal'];
+            if ($data['afterVal']) {
+                $value = '"' . $data['afterVal'] . '"},';
+            }
+            $result .=  $space . '"' . $data['key'] . '": {"status": "same", "value": ' . $value;
         }
+
         if ($tree == 'parent') {
               $result .= " {";
         }
@@ -57,16 +76,17 @@ function dataOut($data, $action, $tree)
         $space = "      ";
 
         if ($tree != 'default') {
-            $result .= "{\n";
+            $result .= '{' . "\n";
         }
 
         foreach ($data['children'] as $k => $v) {
-            $result .=  $space . $k . ": " . $v . "\n";
+            $result .=  $space . '"' . $k . '": "' . $v . '"' . "\n";
         }
 
-        if ($tree != 'default') {
-            $result .=  $space . "}";
+        if ($tree == 'children') {
+            $result .=  $space . '},';
         }
+
 
         if ($tree != 'default') {
             $result .= "\n";
