@@ -45,7 +45,8 @@ function dataOut($data, $action, $tree, $parent)
                 $value = '"' . $data['afterVal'] . '"},';
             }
 
-            $result .=  $space . '"' . $data['key'] . '": {"status": "changed", "oldvalue": "' . $data['beforeVal'] . '", "value": ' . $value;
+            $result .=  $space . '"' . $data['key'] . '": {"status": "changed", "oldvalue": "';
+            $result .= $data['beforeVal'] . '", "value": ' . $value;
 
             // $result .= $space  . "- " . $data['key'] . ": " . $data['beforeVal']. "\n";
             // $result .= $space  . $space  . "+ " . $data['key'] . ": " . $data['afterVal'];
