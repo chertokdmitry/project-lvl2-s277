@@ -39,4 +39,22 @@ class Tests extends TestCase
         $diff = \Diff\Gendiff\genDiff($file1, $file2, $type);
         $this->assertEquals($diff, $result);
     }
+
+    public function testPlain()
+    {
+        $file1 = __DIR__ . "/fixtures/beforeast.json";
+        $file2 = __DIR__ . "/fixtures/afterast.json";
+        $type = "plain";
+        $result = "
+ Property 'common.setting2' was removed
+ Property 'common.setting6' was removed
+ Property 'common.setting4' was added with value 'blah blah'
+ Property 'common.setting5' was added with value 'complex value'
+ Property 'group1.baz' was changed. From 'bas' to 'bars'
+ Property 'group2' was removed
+ Property 'group3' was added with value 'complex value'";
+
+        $diff = \Diff\Gendiff\genDiff($file1, $file2, $type);
+        $this->assertEquals($diff, $result);
+    }
 }
