@@ -84,7 +84,8 @@ class Tests extends TestCase
         "abc": "12345"
     }
   "group3": {"status": "added", "value":  {
-        "fee": "100500"';
+        "fee": "100500
+        "';
 
         $diff = \Diff\Gendiff\genDiff($file1, $file2, $type);
         $this->assertEquals($diff, $result);

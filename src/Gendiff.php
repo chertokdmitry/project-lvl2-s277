@@ -29,7 +29,6 @@ function genDiff($file1, $file2, $format)
     // }
     $data = Differast\diffAst($before, $after);
     $result = Mainview\viewDiff($data, $format);
-    print_r($result);
 
     return $result;
 }
