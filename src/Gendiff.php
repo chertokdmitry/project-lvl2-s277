@@ -25,8 +25,7 @@ function genDiff($file1, $file2, $format)
     if ($format == "pretty") {
         $data = Differast\diffAst($before, $after);
         $result = Mainview\viewDiff($data, $format);
-        $resultFix = $result . "    }\n}\n";
-        print_r($resultFix);
+        $result .= "    }\n}\n";
     }
 
     if ($format == "plain") {
