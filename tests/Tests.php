@@ -8,16 +8,12 @@ class Tests extends TestCase
 {
     public function testPretty()
     {
-            $file1 = __DIR__ . "/fixtures/beforeast.json";
-            $file2 = __DIR__ . "/fixtures/afterast.json";
-            $type = "pretty";
+        $file1 = __DIR__ . "/fixtures/beforeast.json";
+        $file2 = __DIR__ . "/fixtures/afterast.json";
+        $type = "pretty";
+        $result = file_get_contents(__DIR__ . "/fixtures/result.txt");
 
-            $resultFile = __DIR__ . "/fixtures/result.txt";
-            $file = fopen($resultFile, "r")
-            $result = file_get_contents($file);
-
-            $diff = \Diff\Gendiff\genDiff($file1, $file2, $type);
-            $this->assertEquals($diff, $result);
-            fclose($file);
+        $diff = \Diff\Gendiff\genDiff($file1, $file2, $type);
+        $this->assertEquals($diff, $result);
     }
 }
