@@ -8,8 +8,8 @@ class Tests extends TestCase
 {
     public function testPretty()
     {
-            $file1 = "fixtures/before.json";
-            $file2 = "fixtures/after.json";
+            $file1 = __DIR__ . "fixtures/beforeast.json";
+            $file2 = __DIR__ . "fixtures/afterast.json";
             $type = "pretty";
 
             $result= "fixtures/result.txt";
