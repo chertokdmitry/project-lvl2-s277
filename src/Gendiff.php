@@ -31,7 +31,8 @@ function genDiff($file1, $file2, $format)
     }
     if ($format == "plain") {
         $data = Differast\diffAst($before, $after);
-        $result = Viewcli\viewDiff($data);
+        $result = Mainview\viewDiff($data, $format);
+        print_r($result);
     }
 
     if ($format == "jsonplain") {
