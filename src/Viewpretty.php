@@ -1,5 +1,5 @@
 <?php
-namespace Diff\Viewjson;
+namespace Diff\Viewpretty;
 
 function dataOut($data, $action, $tree)
 {

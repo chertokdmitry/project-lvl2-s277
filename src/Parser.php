@@ -7,7 +7,7 @@ function getData($file, $format)
 {
     $result = [];
 
-    if ($format == "json" || $format == "plain" || $format == "fileast") {
+    if ($format == "json" || $format == "plain" || $format == "pretty") {
         $func = function ($fileData) {
             return json_decode($fileData);
         };

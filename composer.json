@@ -15,13 +15,14 @@
             "src/Cli.php",
             "src/Parser.php",
             "src/Gendiff.php",
+            "src/Mainview.php",
             "src/Gendiffplain.php",
             "src/Differ.php",
             "src/Differast.php",
             "src/Viewcli.php",
             "src/Viewjson.php",
             "src/Viewplain.php",
-            "src/Viewfile.php"
+            "src/Viewpretty.php"
         ]
     },
     "require": {

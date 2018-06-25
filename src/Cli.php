@@ -20,5 +20,5 @@ DOCOPT;
     $result = \Docopt::handle($doc);
     $result =  Gendiff\genDiff($result["<firstFile>"], $result["<secondFile>"], $result["--format"]);
 
-    print_r($result);
+    //print_r($result);
 }
