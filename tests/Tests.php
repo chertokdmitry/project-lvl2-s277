@@ -34,8 +34,7 @@ class Tests extends TestCase
     }
   + group3:  {
         fee: 100500
-    }
-}";
+";
 
         $diff = \Diff\Gendiff\genDiff($file1, $file2, $type);
         $this->assertEquals($diff, $result);
