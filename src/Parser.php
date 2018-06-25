@@ -6,8 +6,7 @@ use Symfony\Component\Yaml\Yaml;
 function getData($file, $format)
 {
     $result = [];
-
-    if ($format == "json" || $format == "plain" || $format == "pretty") {
+    if ($format == "json") {
         $func = function ($fileData) {
             return json_decode($fileData);
         };
@@ -18,10 +17,8 @@ function getData($file, $format)
             return Yaml::parse($fileData);
         };
     }
-
     $data = $func($file);
     $newdata = objToArray($data);
-
     return $newdata;
 }
 
