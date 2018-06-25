@@ -12,7 +12,8 @@ class Tests extends TestCase
             $file2 = __DIR__ . "/fixtures/afterast.json";
             $type = "pretty";
 
-            $result= __DIR__ . "/fixtures/result.txt";
+            $resultFile = __DIR__ . "/fixtures/result.txt";
+            $result = file_get_contents($resultFile);
 
             $diff = \Diff\Gendiff\genDiff($file1, $file2, $type);
             $this->assertEquals($diff, $result);
