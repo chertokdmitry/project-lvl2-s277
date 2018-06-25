@@ -5,7 +5,6 @@ use Diff\Mainview;
 use Diff\Parser;
 use Diff\Differast;
 
-
 function genDiff($file1, $file2, $format)
 {
     $dataBefore = file_get_contents($file1);
